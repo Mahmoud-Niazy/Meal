@@ -29,6 +29,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.10.0
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "image/meal.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "image/meal.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -58,8 +69,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - image/meal.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
