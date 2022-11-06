@@ -1,97 +1,120 @@
 import 'package:flutter/material.dart';
 
-class MealDetails extends StatelessWidget{
+class MealDetails extends StatefulWidget {
+  Function Favorites = () {};
+
+  Function CheckFav = () {};
+
+  MealDetails(this.Favorites, this.CheckFav, {Key? key}) : super(key: key);
+
+  @override
+  State<MealDetails> createState() => _MealDetailsState();
+}
+
+class _MealDetailsState extends State<MealDetails> {
   @override
   Widget build(BuildContext context) {
-    final recievedData = ModalRoute.of(context)!.settings.arguments as Map ;
+    final recievedData = ModalRoute.of(context)!.settings.arguments as Map;
     final meal = recievedData['meal'];
 
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          meal.title,
+        ),
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Image.network(meal.imageUrl),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               'Ingredients',
               style: TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Container(
               height: 200,
               width: 300,
-              padding: EdgeInsetsDirectional.all(15),
+              padding: const EdgeInsetsDirectional.all(15),
               child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemBuilder: (context,index)=> Card(
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) => Card(
                   color: Colors.teal,
-                  child: Text(meal.ingredients[index],
-                    style: TextStyle(
+                  child: Text(
+                    meal.ingredients[index],
+                    style: const TextStyle(
                       fontSize: 20,
                       color: Colors.white,
                     ),
-                  ) ,
+                  ),
                 ),
                 itemCount: meal.ingredients.length,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'Steps',
               style: TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Container(
               height: 200,
               width: double.infinity,
-              padding: EdgeInsetsDirectional.all(15),
+              padding: const EdgeInsetsDirectional.all(15),
               child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemBuilder: (context,index)=> Card(
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) => Card(
                   color: Colors.teal,
                   child: ListTile(
                     leading: CircleAvatar(
-                      child: Text(
-                        '${index+1}'
-                      ),
+                      child: Text('${index + 1}'),
                     ),
-                    title:  Text( meal.steps[index],
-                      style: TextStyle(
+                    title: Text(
+                      meal.steps[index],
+                      style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,
                       ),
                     ),
-                  ) ,
+                  ),
                 ),
-                itemCount: meal.ingredients.length,
+                itemCount: meal.steps.length,
               ),
             ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: widget.CheckFav(meal.id) ? Colors.red : Colors.grey,
+        child: const Icon(
+          Icons.favorite_border,
+        ),
+        onPressed: () {
+          setState(() {});
+          widget.Favorites(meal.id);
+        },
+      ),
     );
   }
-
 }
 
 //Meal App

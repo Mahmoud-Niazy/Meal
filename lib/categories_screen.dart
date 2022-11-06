@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-
 import 'dummy_data.dart';
 
 class CategoriesScreen extends StatelessWidget {
+  const CategoriesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return GridView(
-      physics: BouncingScrollPhysics(),
-      padding: EdgeInsets.all(25),
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.all(25),
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200,
         crossAxisSpacing: 20.0,
         mainAxisSpacing: 20.0,
@@ -24,7 +23,6 @@ class CategoriesScreen extends StatelessWidget {
                     arguments: {
                       'id': e.id,
                       'title': e.title,
-
                     },
                   );
                 },
@@ -42,7 +40,7 @@ class CategoriesScreen extends StatelessWidget {
                   child: Center(
                     child: Text(
                       e.title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,

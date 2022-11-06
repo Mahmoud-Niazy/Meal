@@ -1,16 +1,17 @@
-
 import 'package:flutter/material.dart';
 
 class Category {
-  late String id ;
-  late String title ;
-  late Color color ;
+  late String id;
+
+  late String title;
+
+  late Color color;
 
   Category({
     required this.id,
     required this.title,
-    required this.color ,
-});
+    required this.color,
+  });
 }
 
 enum Affordability {
@@ -26,16 +27,21 @@ enum Complexity {
 }
 
 class Meal {
-  late String id ;
-  late List<String> categories ;
-  late String title ;
+  late String id;
+
+  late List<String> categories;
+
+  late String title;
+
   late Affordability affordability;
   late Complexity complexity;
   late String imageUrl;
   late int duration;
-  late List<String> ingredients ;
+  late List<String> ingredients;
+
   late List<String> steps;
-  late bool isGlutenFree ;
+  late bool isGlutenFree;
+
   late bool isVegan;
   late bool isVegetarian;
   late bool isLactoseFree;
@@ -54,5 +60,5 @@ class Meal {
     required this.isVegan,
     required this.isVegetarian,
     required this.steps,
-});
+  });
 }

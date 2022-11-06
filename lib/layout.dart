@@ -2,45 +2,56 @@ import 'package:flutter/material.dart';
 import 'package:meal/categories_screen.dart';
 import 'package:meal/favorites_screen.dart';
 
-class MealLayout extends StatefulWidget{
+import 'objects.dart';
+
+class MealLayout extends StatefulWidget {
+  List<Meal> fav = [];
+
+  MealLayout(this.fav, {Key? key}) : super(key: key);
+
   @override
   State<MealLayout> createState() => _MealLayoutState();
 }
 
 class _MealLayoutState extends State<MealLayout> {
+  int currentIndex = 0;
 
-  int currentIndex =0 ;
-  List<Widget> screens = [
-    CategoriesScreen(),
-    FavoritesScreen(),
-  ];
+  List<Widget> screens = [];
 
+  @override
+  void initState() {
+    screens = [
+      const CategoriesScreen(),
+      FavoritesScreen(widget.fav),
+    ];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Meal App',
         ),
         backgroundColor: Colors.teal,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
             label: 'Categories',
             icon: Icon(
-                Icons.category_outlined,
+              Icons.category_outlined,
             ),
           ),
           BottomNavigationBarItem(
             label: 'Favorites',
             icon: Icon(
-                Icons.favorite_border,
+              Icons.favorite_border,
             ),
           ),
         ],
-        onTap: (index){
+        onTap: (index) {
           setState(() {
             currentIndex = index;
           });
@@ -53,11 +64,11 @@ class _MealLayoutState extends State<MealLayout> {
           children: [
             Container(
               alignment: AlignmentDirectional.centerStart,
-              padding: EdgeInsetsDirectional.all(20),
+              padding: const EdgeInsetsDirectional.all(20),
               color: Colors.teal,
               height: 200,
               width: double.infinity,
-              child: Text(
+              child: const Text(
                 'Cooking Up !',
                 style: TextStyle(
                   fontSize: 30.0,
@@ -66,37 +77,52 @@ class _MealLayoutState extends State<MealLayout> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.restaurant,
               ),
-              title: Text(
+              title: const Text(
                 'Meals',
-                style:TextStyle(
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              onTap: (){
+              onTap: () {
                 Navigator.pushReplacementNamed(context, '/');
               },
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.settings,
               ),
-              title: Text(
+              title: const Text(
                 'Filter',
-                style:TextStyle(
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              onTap: (){
+              onTap: () {
                 Navigator.pushReplacementNamed(context, 'filters');
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.favorite_border,
+              ),
+              title: const Text(
+                'Favorites',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, 'favDrawer');
               },
             ),
           ],
