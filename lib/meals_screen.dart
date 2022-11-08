@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'items.dart';
 
 class MealsScreen extends StatefulWidget {
+  const MealsScreen({Key? key}) : super(key: key);
+
 
 
   @override
@@ -32,8 +34,8 @@ class _MealsScreenState extends State<MealsScreen> {
   }
 
   chose(List meal) {
-    if (meal.length == 0) {
-      return Center(
+    if (meal.isEmpty) {
+      return const Center(
         child: Text(
           'There\'s nothing ',
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -43,9 +45,9 @@ class _MealsScreenState extends State<MealsScreen> {
       return Padding(
         padding: const EdgeInsets.all(15.0),
         child: ListView.separated(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) => BuildMealItem(meal[index], context),
-          separatorBuilder: (context, index) => SizedBox(
+          separatorBuilder: (context, index) => const SizedBox(
             height: 40,
           ),
           itemCount: meal.length,

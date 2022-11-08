@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:meal/categories_screen.dart';
 import 'package:meal/favorites_screen.dart';
 
-import 'objects.dart';
 
 class MealLayout extends StatefulWidget {
 

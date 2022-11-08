@@ -3,10 +3,8 @@ import 'package:meal/fav_in_drawer.dart';
 import 'package:meal/filters_screen.dart';
 import 'package:meal/layout.dart';
 import 'package:meal/meal_provider.dart';
-import 'package:meal/objects.dart';
 import 'package:provider/provider.dart';
 
-import 'dummy_data.dart';
 import 'meal_details.dart';
 import 'meals_screen.dart';
 
