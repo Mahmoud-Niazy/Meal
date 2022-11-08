@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:meal/meal_provider.dart';
+import 'package:provider/provider.dart';
 
 class MealDetails extends StatefulWidget {
-  Function Favorites = () {};
 
-  Function CheckFav = () {};
 
-  MealDetails(this.Favorites, this.CheckFav, {Key? key}) : super(key: key);
 
   @override
   State<MealDetails> createState() => _MealDetailsState();
@@ -104,16 +103,17 @@ class _MealDetailsState extends State<MealDetails> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: widget.CheckFav(meal.id) ? Colors.red : Colors.grey,
+        backgroundColor: Provider.of<MealProvider>(context,listen: true).isFav ? Colors.red : Colors.grey,
         child: const Icon(
           Icons.favorite_border,
         ),
         onPressed: () {
-          setState(() {});
-          widget.Favorites(meal.id);
-        },
-      ),
+    Provider.of<MealProvider>(context,listen: false).Favorites(meal.id);
+
+        }
+    ),
     );
+
   }
 }
 

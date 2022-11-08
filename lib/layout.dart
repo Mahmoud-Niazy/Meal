@@ -5,9 +5,9 @@ import 'package:meal/favorites_screen.dart';
 import 'objects.dart';
 
 class MealLayout extends StatefulWidget {
-  List<Meal> fav = [];
 
-  MealLayout(this.fav, {Key? key}) : super(key: key);
+
+
 
   @override
   State<MealLayout> createState() => _MealLayoutState();
@@ -22,7 +22,7 @@ class _MealLayoutState extends State<MealLayout> {
   void initState() {
     screens = [
       const CategoriesScreen(),
-      FavoritesScreen(widget.fav),
+      FavoritesScreen(),
     ];
     super.initState();
   }

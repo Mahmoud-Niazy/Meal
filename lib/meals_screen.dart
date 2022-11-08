@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:meal/meal_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'items.dart';
 
 class MealsScreen extends StatefulWidget {
-  List chosenMeals;
 
-  MealsScreen(this.chosenMeals);
 
   @override
   State<MealsScreen> createState() => _MealsScreenState();
@@ -19,7 +19,7 @@ class _MealsScreenState extends State<MealsScreen> {
     String categoryId = x['id']!;
     String categoryTitle = x['title']!;
 
-    final meals = widget.chosenMeals.where((element) {
+    final meals = Provider.of<MealProvider>(context).chosenMeals.where((element) {
       return element.categories.contains(categoryId);
     }).toList();
 

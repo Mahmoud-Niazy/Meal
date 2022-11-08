@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:meal/meal_provider.dart';
+import 'package:provider/provider.dart';
 
 class FiltersScreen extends StatefulWidget {
-  Function save;
 
-  FiltersScreen(this.save, {Key? key}) : super(key: key);
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
@@ -29,7 +29,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 'vegetarian': vegetarian,
                 'lactoseFree': lactoseFree,
               };
-              widget.save(newFilters);
+              Provider.of<MealProvider>(context,listen: false).SaveFilters(newFilters);
             },
             icon: const Icon(Icons.save),
           )
