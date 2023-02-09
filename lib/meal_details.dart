@@ -20,9 +20,7 @@ class _MealDetailsState extends State<MealDetails> {
           isFav = true;
         }
       });
-      initState(){
-        isInFav();
-      }
+
     }
 
     return Scaffold(
