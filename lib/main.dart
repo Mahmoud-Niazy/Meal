@@ -3,14 +3,22 @@ import 'package:meal/fav_in_drawer.dart';
 import 'package:meal/filters_screen.dart';
 import 'package:meal/layout.dart';
 import 'package:meal/meal_provider.dart';
+import 'package:meal/shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
 import 'meal_details.dart';
 import 'meals_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await CasheHelper.Init();
   runApp(
-      ChangeNotifierProvider(create: (context) => MealProvider(),
+      ChangeNotifierProvider(create: (context) => MealProvider()..SaveFilters({
+        'glutenFree': CasheHelper.GetData(key: 'glutenFree')?? false,
+        'vegan': CasheHelper.GetData(key: 'vegan')??false ,
+        'vegetarian': CasheHelper.GetData(key: 'vegetarian')?? false ,
+        'lactoseFree': CasheHelper.GetData(key: 'lactoseFree')?? false,
+      }),
       child: const MyApp())
   );
 }

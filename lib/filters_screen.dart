@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal/meal_provider.dart';
+import 'package:meal/shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
 class FiltersScreen extends StatefulWidget {
@@ -10,10 +11,10 @@ class FiltersScreen extends StatefulWidget {
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
-  static bool glutenFree = false;
-  static bool vegan = false;
-  static bool vegetarian = false;
-  static bool lactoseFree = false;
+  static bool glutenFree = CasheHelper.GetData(key: 'glutenFree')?? false;
+  static bool vegan = CasheHelper.GetData(key: 'vegan')??false;
+  static bool vegetarian = CasheHelper.GetData(key: 'vegetarian')??false;
+  static bool lactoseFree =CasheHelper.GetData(key: 'lactoseFree')?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 'lactoseFree': lactoseFree,
               };
               Provider.of<MealProvider>(context,listen: false).SaveFilters(newFilters);
+              CasheHelper.SaveData(key: 'glutenFree', value: glutenFree);
+              CasheHelper.SaveData(key: 'vegan', value: vegan);
+              CasheHelper.SaveData(key: 'vegetarian', value: vegetarian);
+              CasheHelper.SaveData(key: 'lactoseFree', value: lactoseFree);
             },
             icon: const Icon(Icons.save),
           )

@@ -7,16 +7,19 @@ class MealProvider with ChangeNotifier{
   // List chosenMeals = DUMMY_MEALS;
   List<Meal> favoritesMeals = [];
   bool isFav = false ;
+  // Color color = Colors.grey;
 
   Favorites(String id) {
     final index = favoritesMeals.indexWhere((element) => element.id == id);
 
     if (index >= 0) {
       favoritesMeals.removeAt(index);
+      // color= Colors.grey;
     } else {
       favoritesMeals.add(DUMMY_MEALS.firstWhere((element) => element.id == id));
+      // color=Colors.red;
     }
-    isFav = favoritesMeals.any((element) => element.id == id);
+    // isFav = favoritesMeals.any((element) => element.id == id);
     notifyListeners();
   }
 
